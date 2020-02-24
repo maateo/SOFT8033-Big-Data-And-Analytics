@@ -45,6 +45,38 @@ def get_key_value(line):
 # FUNCTION my_reduce
 # ------------------------------------------
 def my_reduce(my_input_stream, my_output_stream, my_reducer_input_parameters):
+    # Manage the current work we are processing
+
+    current_word = ""
+    current_amount = 0
+
+    # Traverse lines to print the total amount of appearance of the final word count
+    for line in my_input_stream:
+        # we get the info from the line
+        line = line.replace("\n", "")
+        info = line.split("\t")
+
+        word = info[0]
+
+        # try:
+        amount = int(info[1:-1])
+
+
+
+        #
+        if word == current_word:
+            current_amount = current_amount+1
+        else:
+            my_str = current_word + "\t(" + str(current_amount) + ")\n"
+            my_output_stream.write(my_str)
+            current_amount = 0
+
+
+    # Print the last word when we're finished
+    my_str = current_word + "\t(" + str(current_amount) + ")\n"
+    my_output_stream.write(my_str)
+
+
     pass
 
 # ------------------------------------------

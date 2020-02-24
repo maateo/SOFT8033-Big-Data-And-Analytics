@@ -39,6 +39,29 @@ def process_line(line):
 # FUNCTION my_map
 # ------------------------------------------
 def my_map(my_input_stream, my_output_stream, my_mapper_input_parameters):
+    res = {}
+
+    # Traverse input_file populating dict
+    for line in my_input_stream:
+        # get list of words form the line
+        line = line.strip()
+        line = line.rstrip()
+        line = line.replace("\n", "")
+
+        words = line.split(" ")
+
+        # populate dictionary
+        for w in words:
+            if w in res:
+                res[w] = res[w] + 1
+            else:
+                res[w] = 0
+
+    for key in res:
+        # my_str = "(" + key + ", " + str(res[key]) + ")\n"
+        my_str = key + "\t(" + str(res[key]) + ")\n"
+        my_output_stream.write(my_str)
+
     pass
 
 # ------------------------------------------
