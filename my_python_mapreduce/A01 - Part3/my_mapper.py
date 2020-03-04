@@ -41,7 +41,6 @@ def process_line(line):
 # FUNCTION my_map
 # ------------------------------------------
 def my_map(my_input_stream, my_output_stream, my_mapper_input_parameters):
-    out = {}
 
     for input in my_input_stream:
         res = process_line(input)
@@ -58,7 +57,6 @@ def my_map(my_input_stream, my_output_stream, my_mapper_input_parameters):
                 hour = dayHour[1]
 
                 daySplit = day.split("-")
-                print(daySplit)
                 dayReordered = daySplit[2] + "-" + daySplit[1] + "-" + daySplit[0]
 
                 my_str = dayReordered + "\t(" + str(hour) + ")\n"
