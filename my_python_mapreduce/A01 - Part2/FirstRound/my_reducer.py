@@ -45,6 +45,17 @@ def get_key_value(line):
 # FUNCTION my_reduce
 # ------------------------------------------
 def my_reduce(my_input_stream, my_output_stream, my_reducer_input_parameters):
+    totalAmount = 0
+
+    for input in my_input_stream:
+        res = get_key_value(input)
+        amount = res[1]
+
+        totalAmount = totalAmount + amount
+
+    my_str = "Total\t(" + str(totalAmount) + ")\n"
+    my_output_stream.write(my_str)
+
     pass
 
 # ------------------------------------------

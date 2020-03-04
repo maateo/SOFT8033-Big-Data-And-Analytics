@@ -45,6 +45,23 @@ def get_key_value(line):
 # FUNCTION my_reduce
 # ------------------------------------------
 def my_reduce(my_input_stream, my_output_stream, my_reducer_input_parameters):
+    out = {}
+    total_amount = 0
+    ran_outs = my_reducer_input_parameters[0]
+    for input in my_input_stream:
+        res = get_key_value(input)
+        amount = res[1]
+        day_hour = res[0]
+        if day_hour in out:
+            out[day_hour] = out[day_hour] + amount
+            total_amount = total_amount + amount
+        else:
+            out[day_hour] = amount
+    for fin in sorted(out.keys(), key=lambda item: out[item], reverse=True):
+        percent = float(out[fin] / ran_outs) * 100
+        my_str = fin + "\t(" + str(out[fin]) + ", " + str(percent) + ")\n"
+        my_output_stream.write(my_str)
+
     pass
 
 # ------------------------------------------

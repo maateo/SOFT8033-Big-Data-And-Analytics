@@ -39,6 +39,30 @@ def process_line(line):
 # FUNCTION my_map
 # ------------------------------------------
 def my_map(my_input_stream, my_output_stream, my_mapper_input_parameters):
+    output = {}
+
+    for input in my_input_stream:
+        processed_input = process_line(input)
+
+        status = processed_input[0]
+        station = processed_input[1]
+        bikes = processed_input[5]
+
+        if status == '0' and bikes == '0':
+            if station in output:
+                output[station] = output[station] +1
+            else:
+                output[station] =1
+        else:
+            if station in output:
+                output[station] = output[station] + 0
+            else:
+                output[station] = 0
+
+    for fin in output:
+        my_str = fin + "\t(" + str(output[fin]) + ")\n"
+        my_output_stream.write(my_str)
+
     pass
 
 # ------------------------------------------

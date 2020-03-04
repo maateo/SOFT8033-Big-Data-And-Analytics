@@ -55,7 +55,32 @@ def process_line(line):
 # FUNCTION my_map
 # ------------------------------------------
 def my_map(my_input_stream, my_output_stream, my_mapper_input_parameters):
-    pass
+    out = {}
+
+    for input in my_input_stream:
+        res = process_line(input)
+        status = res[0]
+        station = res[1]
+        bikes = res[5]
+
+        dataStatus = res[4]
+
+        if station == my_mapper_input_parameters[0]:
+            if status == '0' and bikes =='0':
+                dayHour = dataStatus.split(" ")
+                day = get_day_of_week(dayHour[0])
+                hour = dayHour[1].split(":")
+                hour = hour[0]
+                simple = day  + "_" + hour
+
+                if simple in out:
+                    out[simple] = out[simple] +1
+                else:
+                    out[simple] = 1
+
+    for fin in out:
+        my_str = fin + "\t(" +str(out[fin]) + ")\n"
+        my_output_stream.write(my_str)
 
 # ------------------------------------------
 # FUNCTION my_main

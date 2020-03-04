@@ -45,6 +45,21 @@ def get_key_value(line):
 # FUNCTION my_reduce
 # ------------------------------------------
 def my_reduce(my_input_stream, my_output_stream, my_reducer_input_parameters):
+    out = {}
+
+    for input in my_input_stream:
+        res = get_key_value(input)
+        station = res[0]
+        amount = res[1]
+        if station in out:
+            out[station] = out[station] + amount
+        else:
+            out[station] = amount
+
+    for fin in sorted(out.keys(), key=lambda  item:out[item], reverse=True):
+        my_str = fin + "\t(" + str(out[fin]) + ")\n"
+        my_output_stream.write(my_str)
+
     pass
 
 # ------------------------------------------
