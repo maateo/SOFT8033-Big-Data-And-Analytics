@@ -56,7 +56,7 @@ def my_reduce(my_input_stream, my_output_stream, my_reducer_input_parameters):
         else:
             out[station] = amount
 
-    for fin in sorted(out.keys(), key=lambda  item:out[item], reverse=True):
+    for fin in sorted(out.keys(), key=lambda item: out[item], reverse=True):
         my_str = fin + "\t(" + str(out[fin]) + ")\n"
         my_output_stream.write(my_str)
 

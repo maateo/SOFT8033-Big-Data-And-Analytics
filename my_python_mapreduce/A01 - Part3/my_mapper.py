@@ -15,6 +15,7 @@
 import sys
 import codecs
 
+
 # ------------------------------------------
 # FUNCTION process_line
 # ------------------------------------------
@@ -35,11 +36,36 @@ def process_line(line):
     # 5. We return res
     return res
 
+
 # ------------------------------------------
 # FUNCTION my_map
 # ------------------------------------------
 def my_map(my_input_stream, my_output_stream, my_mapper_input_parameters):
+    out = {}
+
+    for input in my_input_stream:
+        res = process_line(input)
+        status = res[0]
+        station = res[1]
+        bikes = res[5]
+
+        dateStatus = res[4]
+
+        if station == my_mapper_input_parameters[0]:
+            if status == '0' and bikes == '0':
+                dayHour = dateStatus.split(" ")
+                day = dayHour[0]
+                hour = dayHour[1]
+
+                daySplit = day.split("-")
+                print(daySplit)
+                dayReordered = daySplit[2] + "-" + daySplit[1] + "-" + daySplit[0]
+
+                my_str = dayReordered + "\t(" + str(hour) + ")\n"
+                my_output_stream.write(my_str)
+
     pass
+
 
 # ------------------------------------------
 # FUNCTION my_main
@@ -48,8 +74,7 @@ def my_main(local_False_Cloudera_True,
             my_mapper_input_parameters,
             input_file_example,
             output_file_example
-           ):
-
+            ):
     # 1. We select the input and output streams based on our working mode
     my_input_stream = None
     my_output_stream = None
@@ -66,6 +91,7 @@ def my_main(local_False_Cloudera_True,
 
     # 2. We trigger my_map
     my_map(my_input_stream, my_output_stream, my_mapper_input_parameters)
+
 
 # ---------------------------------------------------------------
 #           PYTHON EXECUTION
@@ -94,4 +120,4 @@ if __name__ == '__main__':
             my_mapper_input_parameters,
             input_file_example,
             output_file_example
-           )
+            )
