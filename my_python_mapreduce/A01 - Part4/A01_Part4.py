@@ -121,7 +121,7 @@ def my_main(my_list, station_names):
     # 2. Apply the Higher-Order function my_map again,
     #    now to restrict the tuple previously computed to just the name of the station and the amount of bikes available
 
-    my_list = my_map(lambda line: line[slice(1, 6, 4)], my_list)  # -> Replace None with a call to my_map
+    my_list = my_map(lambda line: (line[1], line[5]), my_list)  # -> Replace None with a call to my_map
 
     print("\n\n\n\n\n------ STEP 2 ------\n")
     for item in range(50):
