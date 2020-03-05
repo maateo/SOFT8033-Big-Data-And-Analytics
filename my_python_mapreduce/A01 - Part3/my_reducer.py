@@ -45,28 +45,19 @@ def get_key_value(line):
 # FUNCTION my_reduce
 # ------------------------------------------
 def my_reduce(my_input_stream, my_output_stream, my_reducer_input_parameters):
-    out = []
+    outputs = []
     measurement_time = my_reducer_input_parameters[0]
 
     datetime_format = '%Y-%m-%d\t(%H:%M:%S)\n'
 
-    ran_out_count = 0
+    ran_out_count = 1
     starting_time =""
     current_time = ""
 
     for input in my_input_stream:
-        # res = get_key_value(input)
-        # amount = res[1]
-        # day_hour = res[0]
-        # if day_hour in out:
-        #     out[day_hour] = out[day_hour] + amount
-        #     total_amount = total_amount + amount
-        # else:
-        #     out[day_hour] = amount
         if starting_time == "":
             starting_time = datetime.strptime(input, datetime_format)
             current_time = starting_time
-            ran_out_count = ran_out_count + 1
 
         next_time = datetime.strptime(input, datetime_format)
 
@@ -80,24 +71,13 @@ def my_reduce(my_input_stream, my_output_stream, my_reducer_input_parameters):
 
         if (next_time - current_time).total_seconds() > 5 * 60:
             # We are more than 5 minute apart
-            out.append(str(starting_time.strftime("%Y-%m-%d\t(%H:%M:%S")) + ", " + str(ran_out_count) + ")\n")
-            ran_out_count = 0
-            starting_time = ""
-            current_time = ""
+            outputs.append(str(starting_time.strftime("%Y-%m-%d\t(%H:%M:%S")) + ", " + str(ran_out_count) + ")\n")
+            ran_out_count = 1
+            starting_time = next_time
+            current_time = next_time
 
-
-
-
-    print("hello")
-
-    for fin in sorted(out):
-
-        my_output_stream.write(fin)
-
-    # for fin in sorted(out.keys(), key=lambda item: out[item], reverse=True):
-    #     percent = float(out[fin] / ran_outs) * 100
-    #     my_str = fin + "\t(" + str(out[fin]) + ", " + str(percent) + ")\n"
-    #     my_output_stream.write(my_str)
+    for item in sorted(outputs):
+        my_output_stream.write(item)
 
 
     pass
