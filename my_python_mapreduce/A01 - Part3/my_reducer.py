@@ -14,6 +14,7 @@
 
 import sys
 import codecs
+from datetime import datetime
 
 #---------------------------------------
 #  FUNCTION get_key_value
@@ -44,6 +45,41 @@ def get_key_value(line):
 # FUNCTION my_reduce
 # ------------------------------------------
 def my_reduce(my_input_stream, my_output_stream, my_reducer_input_parameters):
+    outputs = []
+    measurement_time = my_reducer_input_parameters[0]
+
+    datetime_format = '%Y-%m-%d\t(%H:%M:%S)\n'
+
+    ran_out_count = 1
+    starting_time =""
+    current_time = ""
+
+    for input in my_input_stream:
+        if starting_time == "":
+            starting_time = datetime.strptime(input, datetime_format)
+            current_time = starting_time
+
+        next_time = datetime.strptime(input, datetime_format)
+
+        if next_time == current_time:
+            continue
+
+        if (next_time - current_time).total_seconds() == measurement_time * 60:
+            # We are 5 minutes apart
+            ran_out_count = ran_out_count + 1
+            current_time = next_time
+
+        if (next_time - current_time).total_seconds() > 5 * 60:
+            # We are more than 5 minute apart
+            outputs.append(str(starting_time.strftime("%Y-%m-%d\t(%H:%M:%S")) + ", " + str(ran_out_count) + ")\n")
+            ran_out_count = 1
+            starting_time = next_time
+            current_time = next_time
+
+    for item in sorted(outputs):
+        my_output_stream.write(item)
+
+
     pass
 
 # ------------------------------------------
