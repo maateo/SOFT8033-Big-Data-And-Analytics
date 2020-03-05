@@ -154,7 +154,7 @@ def my_main(my_list, station_names):
     # 5. Apply the the Higher-Order function my_map again,
     #    now to make each entry to be (Station_name, 1)
 
-    my_list = None # -> Replace None with a call to my_map
+    my_list = my_map(lambda tuple: (tuple[0], tuple[1] +1), my_list) # -> Replace None with a call to my_map
 
     print("\n\n\n\n\n------ STEP 5 ------\n")
     for item in range(50):
