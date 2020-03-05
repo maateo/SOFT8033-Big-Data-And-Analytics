@@ -165,7 +165,7 @@ def my_main(my_list, station_names):
     # 6. Apply the the Higher-Order function my_fold provided above,
     #    so as to compute the total amount of ran outs
 
-    res = None # -> Replace None with a call to my_fold
+    res = my_fold(lambda accum, item: accum + item[1], 0, my_list) # -> Replace None with a call to my_fold
 
     print("\n\n\n\n\n------ STEP 6 ------\n")
     print(res)
