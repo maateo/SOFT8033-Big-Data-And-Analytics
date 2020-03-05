@@ -45,16 +45,16 @@ def get_key_value(line):
 # FUNCTION my_reduce
 # ------------------------------------------
 def my_reduce(my_input_stream, my_output_stream, my_reducer_input_parameters):
-    totalAmount = 0
+    total_ran_outs = 0
 
     for input in my_input_stream:
-        res = get_key_value(input)
-        amount = res[1]
+        key_value = get_key_value(input)
+        ran_out_count = key_value[1]
 
-        totalAmount = totalAmount + amount
+        total_ran_outs = total_ran_outs + ran_out_count
 
-    my_str = "Total\t(" + str(totalAmount) + ")\n"
-    my_output_stream.write(my_str)
+    string_to_write = "Total\t(" + str(total_ran_outs) + ")\n"
+    my_output_stream.write(string_to_write)
 
     pass
 

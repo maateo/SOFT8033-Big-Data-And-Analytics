@@ -55,32 +55,35 @@ def process_line(line):
 # FUNCTION my_map
 # ------------------------------------------
 def my_map(my_input_stream, my_output_stream, my_mapper_input_parameters):
-    out = {}
+    outputs_dictionary = {}
 
     for input in my_input_stream:
-        res = process_line(input)
-        status = res[0]
-        station = res[1]
-        bikes = res[5]
+        processed_input = process_line(input)
 
-        dataStatus = res[4]
+        status = processed_input[0]
+        name = processed_input[1]
+        date_status = processed_input[4]
+        bikes_available = processed_input[5]
 
-        if station == my_mapper_input_parameters[0]:
-            if status == '0' and bikes =='0':
-                dayHour = dataStatus.split(" ")
-                day = get_day_of_week(dayHour[0])
-                hour = dayHour[1].split(":")
-                hour = hour[0]
-                simple = day  + "_" + hour
+        if name == my_mapper_input_parameters[0]:
+            if status == '0' and bikes_available == '0':
+                date_time = date_status.split(" ")
 
-                if simple in out:
-                    out[simple] = out[simple] +1
+                day = get_day_of_week(date_time[0])
+
+                time = date_time[1].split(":")
+                hour = time[0]
+
+                day_hour = day + "_" + hour
+
+                if day_hour in outputs_dictionary:
+                    outputs_dictionary[day_hour] = outputs_dictionary[day_hour] + 1
                 else:
-                    out[simple] = 1
+                    outputs_dictionary[day_hour] = 1
 
-    for fin in out:
-        my_str = fin + "\t(" +str(out[fin]) + ")\n"
-        my_output_stream.write(my_str)
+    for output in outputs_dictionary:
+        string_to_write = output + "\t(" + str(outputs_dictionary[output]) + ")\n"
+        my_output_stream.write(string_to_write)
 
 # ------------------------------------------
 # FUNCTION my_main

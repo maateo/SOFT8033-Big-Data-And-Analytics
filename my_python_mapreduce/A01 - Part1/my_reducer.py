@@ -45,22 +45,23 @@ def get_key_value(line):
 # FUNCTION my_reduce
 # ------------------------------------------
 def my_reduce(my_input_stream, my_output_stream, my_reducer_input_parameters):
-    out = {}
+    outputs_dictionary = {}
 
     for input in my_input_stream:
-        res = get_key_value(input)
-        station = res[0]
-        amount = res[1]
-        if station in out:
-            out[station] = out[station] + amount
+        key_value = get_key_value(input)
+
+        name = key_value[0]
+        bikes_available = key_value[1]
+
+        if name in outputs_dictionary:
+            outputs_dictionary[name] = outputs_dictionary[name] + bikes_available
         else:
-            out[station] = amount
+            outputs_dictionary[name] = bikes_available
 
-    for fin in sorted(out.keys(), key=lambda item: out[item], reverse=True):
-        my_str = fin + "\t(" + str(out[fin]) + ")\n"
-        my_output_stream.write(my_str)
+    for output in sorted(outputs_dictionary.keys(), key=lambda item: outputs_dictionary[item], reverse=True):
+        string_to_write = output + "\t(" + str(outputs_dictionary[output]) + ")\n"
+        my_output_stream.write(string_to_write)
 
-    pass
 
 # ------------------------------------------
 # FUNCTION my_main

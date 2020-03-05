@@ -39,21 +39,21 @@ def process_line(line):
 # FUNCTION my_map
 # ------------------------------------------
 def my_map(my_input_stream, my_output_stream, my_mapper_input_parameters):
-    amount = 0
+    ran_out_count = 0
 
     for input in my_input_stream:
-        res = process_line(input)
+        processed_input = process_line(input)
 
-        status = res[0]
-        station = res[1]
-        bikes = res[5]
+        status = processed_input[0]
+        name = processed_input[1]
+        bikes_available = processed_input[5]
 
-        if station == my_mapper_input_parameters[0]:
-            if status == '0' and bikes == '0':
-                amount = amount + 1
+        if name == my_mapper_input_parameters[0]:
+            if status == '0' and bikes_available == '0':
+                ran_out_count = ran_out_count + 1
 
-    my_str = "Total" + "\t(" + str(amount) + ")\n"
-    my_output_stream.write(my_str)
+    string_to_write = "Total" + "\t(" + str(ran_out_count) + ")\n"
+    my_output_stream.write(string_to_write)
 
     pass
 

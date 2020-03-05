@@ -41,28 +41,26 @@ def process_line(line):
 # FUNCTION my_map
 # ------------------------------------------
 def my_map(my_input_stream, my_output_stream, my_mapper_input_parameters):
-
     for input in my_input_stream:
-        res = process_line(input)
-        status = res[0]
-        station = res[1]
-        bikes = res[5]
+        processed_input = process_line(input)
 
-        dateStatus = res[4]
+        status = processed_input[0]
+        name = processed_input[1]
+        date_status = processed_input[4]
+        bikes_available = processed_input[5]
 
-        if station == my_mapper_input_parameters[0]:
-            if status == '0' and bikes == '0':
-                dayHour = dateStatus.split(" ")
-                day = dayHour[0]
-                hour = dayHour[1]
+        if name == my_mapper_input_parameters[0]:
+            if status == '0' and bikes_available == '0':
+                date_time = date_status.split(" ")
 
-                daySplit = day.split("-")
-                dayReordered = daySplit[2] + "-" + daySplit[1] + "-" + daySplit[0]
+                date = date_time[0]
+                time = date_time[1]
 
-                my_str = dayReordered + "\t(" + str(hour) + ")\n"
-                my_output_stream.write(my_str)
+                date_split = date.split("-")
+                date_reordered = date_split[2] + "-" + date_split[1] + "-" + date_split[0]
 
-    pass
+                string_to_write = date_reordered + "\t(" + str(time) + ")\n"
+                my_output_stream.write(string_to_write)
 
 
 # ------------------------------------------
