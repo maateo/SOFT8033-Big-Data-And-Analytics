@@ -56,7 +56,6 @@ def my_reduce(my_input_stream, my_output_stream, my_reducer_input_parameters):
     string_to_write = "Total\t(" + str(total_ran_outs) + ")\n"
     my_output_stream.write(string_to_write)
 
-    pass
 
 # ------------------------------------------
 # FUNCTION my_main

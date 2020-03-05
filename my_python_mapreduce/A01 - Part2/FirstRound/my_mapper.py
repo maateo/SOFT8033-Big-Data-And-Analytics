@@ -55,7 +55,6 @@ def my_map(my_input_stream, my_output_stream, my_mapper_input_parameters):
     string_to_write = "Total" + "\t(" + str(ran_out_count) + ")\n"
     my_output_stream.write(string_to_write)
 
-    pass
 
 # ------------------------------------------
 # FUNCTION my_main

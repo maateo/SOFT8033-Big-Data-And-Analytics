@@ -143,7 +143,7 @@ def my_main(my_list, station_names):
     # 4. Apply the Higher-Order function my_filter again,
     #    now to restrict the entries to the ones of the desired stations
 
-    my_list = my_filter(lambda tuple: tuple if tuple[0] not in station_names else True, my_list) # -> Replace None with a call to my_filter
+    my_list = my_filter(lambda tuple: tuple if tuple[0] not in station_names else True, my_list)  # -> Replace None with a call to my_filter
 
     print("\n\n\n\n\n------ STEP 4 ------\n")
     for item in range(50):
@@ -154,7 +154,7 @@ def my_main(my_list, station_names):
     # 5. Apply the the Higher-Order function my_map again,
     #    now to make each entry to be (Station_name, 1)
 
-    my_list = my_map(lambda tuple: (tuple[0], tuple[1] +1), my_list) # -> Replace None with a call to my_map
+    my_list = my_map(lambda tuple: (tuple[0], tuple[1] + 1), my_list)  # -> Replace None with a call to my_map
 
     print("\n\n\n\n\n------ STEP 5 ------\n")
     for item in range(50):
@@ -165,7 +165,7 @@ def my_main(my_list, station_names):
     # 6. Apply the the Higher-Order function my_fold provided above,
     #    so as to compute the total amount of ran outs
 
-    res = my_fold(lambda accum, item: accum + item[1], 0, my_list) # -> Replace None with a call to my_fold
+    res = my_fold(lambda accum, item: accum + item[1], 0, my_list)  # -> Replace None with a call to my_fold
 
     print("\n\n\n\n\n------ STEP 6 ------\n")
     print(res)
