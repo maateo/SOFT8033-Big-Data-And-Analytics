@@ -143,7 +143,7 @@ def my_main(my_list, station_names):
     # 4. Apply the Higher-Order function my_filter again,
     #    now to restrict the entries to the ones of the desired stations
 
-    my_list = None # -> Replace None with a call to my_filter
+    my_list = my_filter(lambda tuple: tuple if tuple[0] not in station_names else True, my_list) # -> Replace None with a call to my_filter
 
     print("\n\n\n\n\n------ STEP 4 ------\n")
     for item in range(50):
