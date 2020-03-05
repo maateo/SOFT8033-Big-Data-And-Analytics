@@ -110,7 +110,7 @@ def my_main(my_list, station_names):
     # 1. Apply the Higher-Order function my_map provided above,
     #    so as to apply "process_line" to all functions
 
-    my_list = None # -> Replace None with a call to my_map
+    my_list = my_map(lambda aFunction: process_line(line), my_list)  # -> Replace None with a call to my_map
 
     print("\n\n\n\n\n------ STEP 1 ------\n")
     for item in range(50):
