@@ -132,7 +132,7 @@ def my_main(my_list, station_names):
     # 3. Apply the Higher-Order function my_filter provided above,
     #    now to restrict only the entries which are ran out of bikes
 
-    my_list = None # -> Replace None with a call to my_filter
+    my_list = my_filter(lambda line: line if line[1] is not 0 else True, my_list)  # -> Replace None with a call to my_filter
 
     print("\n\n\n\n\n------ STEP 3 ------\n")
     for item in range(50):
