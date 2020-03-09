@@ -66,7 +66,7 @@ def my_reduce(my_input_stream, my_output_stream, my_reducer_input_parameters):
             ran_out_count = ran_out_count + 1
             current_time = next_time
 
-        if (next_time - current_time).total_seconds() > 5 * 60:
+        if (next_time - current_time).total_seconds() > my_reducer_input_parameters[0] * 60:
             # We are more than 5 minute apart
             # Save our counts
             string_to_write = (str(starting_time.strftime("%Y-%m-%d\t(%H:%M:%S")) + ", " + str(ran_out_count) + ")\n")

@@ -110,7 +110,7 @@ def my_main(my_list, station_names):
     # 1. Apply the Higher-Order function my_map provided above,
     #    so as to apply "process_line" to all functions
 
-    my_list = my_map(lambda line: process_line(line), my_list)  # -> Replace None with a call to my_map
+    my_list = my_map(process_line, my_list)  # -> Replace None with a call to my_map
 
     print("\n\n\n\n\n------ STEP 1 ------\n")
     for item in range(50):
@@ -132,7 +132,8 @@ def my_main(my_list, station_names):
     # 3. Apply the Higher-Order function my_filter provided above,
     #    now to restrict only the entries which are ran out of bikes
 
-    my_list = my_filter(lambda tuple: tuple if tuple[1] is not 0 else True, my_list)  # -> Replace None with a call to my_filter
+    # my_list = my_filter(lambda tuple: tuple if tuple[1] is not 0 else True, my_list)  # -> Replace None with a call to my_filter
+    my_list = my_filter(lambda tuple: tuple[1] == 0, my_list)  # -> Replace None with a call to my_filter
 
     print("\n\n\n\n\n------ STEP 3 ------\n")
     for item in range(50):
@@ -143,7 +144,7 @@ def my_main(my_list, station_names):
     # 4. Apply the Higher-Order function my_filter again,
     #    now to restrict the entries to the ones of the desired stations
 
-    my_list = my_filter(lambda tuple: tuple if tuple[0] not in station_names else True, my_list)  # -> Replace None with a call to my_filter
+    my_list = my_filter(lambda tuple: tuple[0] in station_names, my_list)  # -> Replace None with a call to my_filter
 
     print("\n\n\n\n\n------ STEP 4 ------\n")
     for item in range(50):
@@ -154,7 +155,7 @@ def my_main(my_list, station_names):
     # 5. Apply the the Higher-Order function my_map again,
     #    now to make each entry to be (Station_name, 1)
 
-    my_list = my_map(lambda tuple: (tuple[0], tuple[1] + 1), my_list)  # -> Replace None with a call to my_map
+    my_list = my_map(lambda tuple: (tuple[0], 1), my_list)  # -> Replace None with a call to my_map
 
     print("\n\n\n\n\n------ STEP 5 ------\n")
     for item in range(50):
