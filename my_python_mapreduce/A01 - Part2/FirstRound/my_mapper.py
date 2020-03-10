@@ -53,7 +53,7 @@ def my_map(my_input_stream, my_output_stream, my_mapper_input_parameters):
                 # Ran out of bikes
                 ran_out_count = ran_out_count + 1
 
-    string_to_write = "Total" + "\t(" + str(ran_out_count) + ")\n"
+    string_to_write = "total" + "\t(" + str(ran_out_count) + ")\n"
     my_output_stream.write(string_to_write)
 
 
