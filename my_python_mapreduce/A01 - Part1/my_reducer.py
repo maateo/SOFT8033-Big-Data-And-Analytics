@@ -54,6 +54,7 @@ def my_reduce(my_input_stream, my_output_stream, my_reducer_input_parameters):
         bikes_available = key_value[1]
 
         if name in outputs_dictionary:
+            # Add the number of bikes available
             outputs_dictionary[name] = outputs_dictionary[name] + bikes_available
         else:
             outputs_dictionary[name] = bikes_available

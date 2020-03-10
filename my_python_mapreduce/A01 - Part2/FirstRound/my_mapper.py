@@ -50,6 +50,7 @@ def my_map(my_input_stream, my_output_stream, my_mapper_input_parameters):
 
         if name == my_mapper_input_parameters[0]:
             if status == '0' and bikes_available == '0':
+                # Ran out of bikes
                 ran_out_count = ran_out_count + 1
 
     string_to_write = "Total" + "\t(" + str(ran_out_count) + ")\n"

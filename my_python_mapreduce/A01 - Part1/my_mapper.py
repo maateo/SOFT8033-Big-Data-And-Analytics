@@ -49,14 +49,14 @@ def my_map(my_input_stream, my_output_stream, my_mapper_input_parameters):
         bikes_available = processed_input[5]
 
         if status == '0' and bikes_available == '0':
+            # Station ran out of bikes
             if name in outputs_dictionary:
                 outputs_dictionary[name] = outputs_dictionary[name] + 1
             else:
                 outputs_dictionary[name] = 1
         else:
-            if name in outputs_dictionary:
-                outputs_dictionary[name] = outputs_dictionary[name] + 0
-            else:
+            # Keep the other ones, but note that they haven't ran out of bikes
+            if name not in outputs_dictionary:
                 outputs_dictionary[name] = 0
 
     for output in outputs_dictionary:

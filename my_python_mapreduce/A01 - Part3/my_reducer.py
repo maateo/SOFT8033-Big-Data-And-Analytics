@@ -58,9 +58,6 @@ def my_reduce(my_input_stream, my_output_stream, my_reducer_input_parameters):
 
         next_time = datetime.strptime(input, datetime_format)
 
-        if next_time == current_time:
-            continue
-
         if (next_time - current_time).total_seconds() == my_reducer_input_parameters[0] * 60:
             # We are 5 minutes apart
             ran_out_count = ran_out_count + 1
@@ -76,6 +73,10 @@ def my_reduce(my_input_stream, my_output_stream, my_reducer_input_parameters):
             ran_out_count = 1
             starting_time = next_time
             current_time = next_time
+
+    # Write the last line
+    string_to_write = (str(starting_time.strftime("%Y-%m-%d\t(%H:%M:%S")) + ", " + str(ran_out_count) + ")\n")
+    my_output_stream.write(string_to_write)
 
 
 # ------------------------------------------

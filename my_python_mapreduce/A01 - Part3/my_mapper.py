@@ -51,6 +51,7 @@ def my_map(my_input_stream, my_output_stream, my_mapper_input_parameters):
 
         if name == my_mapper_input_parameters[0]:
             if status == '0' and bikes_available == '0':
+                # Ran out of bikes
                 date_time = date_status.split(" ")
 
                 date = date_time[0]
